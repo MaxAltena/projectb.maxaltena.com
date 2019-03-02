@@ -1,0 +1,25 @@
+i.scrollToTop {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+  line-height: 40px;
+  color: $black-accent;
+  transition: color 0.3s, opacity 0.3s, right 0.3s;
+  right: -40px;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $grey-darken-3;
+  }
+
+  &.scrolled {
+    right: 25px;
+  }
+}
