@@ -5,7 +5,7 @@
   .FeedPost {
     width: 100%;
     height: auto;
-    min-height: 250px;
+    min-height: 200px;
     margin-bottom: 25px;
 
     transition: box-shadow 0.3s;
@@ -40,6 +40,8 @@
         img {
           height: 36px;
           width: 36px;
+          user-select: none;
+          -webkit-user-drag: none;
         }
 
         &.hide-on-small-only {

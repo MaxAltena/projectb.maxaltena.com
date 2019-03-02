@@ -8,7 +8,7 @@ const FeedPost = ({ post }) => {
       <div className="card-content">
         <span className="card-title hind bold">{title}</span>
         <p>
-          {preview} <Link to={`/post/${id}`}>Verder lezen...</Link>
+          {preview} <Link to={`/bericht/${id}`}>Verder lezen...</Link>
         </p>
       </div>
       <div className="card-action">
@@ -30,7 +30,7 @@ const FeedPost = ({ post }) => {
             <span>{date}</span>
           </div>
         </div>
-        <Link to={`/post/${id}`} className="btn-flat waves-effect">
+        <Link to={`/bericht/${id}`} className="btn-flat waves-effect">
           Lees bericht
         </Link>
       </div>
