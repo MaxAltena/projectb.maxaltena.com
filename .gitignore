@@ -136,7 +136,6 @@ Temporary Items
 ### Other ###
 # Styling
 *.css
-!spec/*.css
 
 # dependencies
 /.pnp
