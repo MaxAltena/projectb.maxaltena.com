@@ -5,8 +5,8 @@ import Logo from "./components/Header/Logo";
 import Socials from "./components/Header/Socials";
 import Feed from "./components/Feed/Feed";
 import Post from "./components/Post";
-import CreatePost from "./components/CreatePost";
-import Admin from "./components/Admin";
+// import CreatePost from "./components/CreatePost";
+// import Admin from "./components/Admin";
 
 class App extends Component {
   constructor(props) {
@@ -107,8 +107,8 @@ class App extends Component {
                 path="/bericht/:id"
                 render={props => <Post posts={posts} {...props} />}
               />
-              <Route path="/create" component={CreatePost} />
-              <Route path="/admin" component={Admin} />
+              {/* <Route path="/create" component={CreatePost} /> */}
+              {/* <Route path="/admin" component={Admin} /> */}
               <Route render={() => <Redirect to="/" />} />
             </Switch>
           </div>
