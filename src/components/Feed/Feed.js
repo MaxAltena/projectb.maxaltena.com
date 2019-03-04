@@ -1,5 +1,6 @@
 import React from "react";
 import FeedPost from "./FeedPost";
+import Add from "../common/Add";
 import { connect } from "react-redux";
 
 const Feed = ({ history, posts, auth }) => {
@@ -12,14 +13,7 @@ const Feed = ({ history, posts, auth }) => {
       ) : (
         <div className="center">Nog geen berichten...</div>
       )}
-      {!auth.isEmpty ? (
-        <i
-          className="material-icons add shake shake-slow-small"
-          onClick={() => history.push("/create")}
-        >
-          add
-        </i>
-      ) : null}
+      {!auth.isEmpty ? <Add history={history} /> : null}
     </div>
   );
 };

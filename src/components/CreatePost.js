@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Input from "./common/Input";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { createPost } from "../store/actions/postActions";
@@ -99,16 +100,14 @@ class CreatePost extends Component {
           <div className="row">
             <form onSubmit={this.handleSubmit} className="col s12">
               <div className="row">
-                <div className="input-field col s6">
-                  <input
-                    type="text"
-                    id="title"
-                    onChange={this.handleChange}
-                    value={title}
-                    required
-                  />
-                  <label htmlFor="title">Titel</label>
-                </div>
+                <Input
+                  size="6"
+                  type="text"
+                  id="title"
+                  value={title}
+                  onChange={this.handleChange}
+                  name="Titel"
+                />
                 <div className="input-field col s6">
                   <input disabled type="text" id="id" value={id} />
                   <label

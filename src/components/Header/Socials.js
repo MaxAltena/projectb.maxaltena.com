@@ -1,14 +1,11 @@
 import React from "react";
+import Social from "./Social";
 
 const Socials = () => {
   return (
     <div className="Socials">
-      <a href="mailto:max@maxaltena.com" className="shake shake-slow-small">
-        <i className="material-icons">mail</i>
-      </a>
-      <a href="tel:+31639105742" className="shake shake-slow-small">
-        <i className="material-icons">phone</i>
-      </a>
+      <Social linkTo="mailto:max@maxaltena.com" icon="mail" />
+      <Social linkTo="tel:+31639105742" icon="phone" />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Input from "./common/Input";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { logIn } from "../store/actions/authActions";
@@ -34,26 +35,24 @@ class LogIn extends Component {
           <div className="row">
             <form onSubmit={this.handleSubmit} className="col s12">
               <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    type="text"
-                    id="email"
-                    value={email}
-                    onChange={this.handleChange}
-                  />
-                  <label htmlFor="email">Email</label>
-                </div>
+                <Input
+                  size="12"
+                  type="text"
+                  id="email"
+                  value={email}
+                  onChange={this.handleChange}
+                  name="Email"
+                />
               </div>
               <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    type="password"
-                    id="password"
-                    value={password}
-                    onChange={this.handleChange}
-                  />
-                  <label htmlFor="password">Wachtwoord</label>
-                </div>
+                <Input
+                  size="12"
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={this.handleChange}
+                  name="Wachtwoord"
+                />
               </div>
               <div className="row">
                 <div className="right">
