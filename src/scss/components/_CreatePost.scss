@@ -1,0 +1,57 @@
+.CreatePost {
+  transition: box-shadow 0.3s;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Hind", "Open Sans", sans-serif;
+    font-weight: 800;
+  }
+
+  .card-content {
+    > h2 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+    padding-bottom: 0;
+  }
+
+  div.content {
+    min-height: 25px;
+    padding: 10px;
+    border: 1px solid $black-accent;
+  }
+
+  .activeAlways {
+    transform: translateY(-14px) scale(0.8);
+    transform-origin: 0 0;
+  }
+
+  ul > li > img {
+    border-radius: 50%;
+  }
+
+  .row > img.avatar {
+    height: 51px;
+    width: auto;
+    margin: 14px 0;
+    padding: 0;
+  }
+
+  .preview {
+    color: #9e9e9e;
+    font-size: 1rem;
+    transform: scale(0.8);
+    transform-origin: 0 0;
+  }
+
+  &:hover {
+    box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14),
+      0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+  }
+}

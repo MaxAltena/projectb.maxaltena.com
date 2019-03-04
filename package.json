@@ -17,12 +17,19 @@
   },
   "homepage": "https://projectb.maxaltena.com/",
   "dependencies": {
+    "firebase": "^5.8.5",
+    "moment": "^2.24.0",
     "react": "^16.8.3",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.8.3",
+    "react-redux": "^5.1.1",
+    "react-redux-firebase": "^2.2.6",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.5",
-    "react-scroll": "^1.7.11"
+    "react-scroll": "^1.7.11",
+    "redux": "^4.0.1",
+    "redux-firestore": "^0.7.0",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "ftp-deploy": "^2.3.1",

@@ -48,10 +48,15 @@
           div {
             height: 36px;
             width: auto;
+
             margin: 0 12px;
 
             display: flex;
             flex-direction: column;
+
+            &:nth-child(2) {
+              min-width: 135px;
+            }
 
             span:first-child {
               color: $grey;

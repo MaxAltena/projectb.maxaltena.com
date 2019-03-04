@@ -1,22 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 import { Redirect } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
+import moment from "moment";
+import "moment/locale/nl";
 
-class Post extends Component {
-  constructor(props) {
-    super(props);
-
-    const { id } = this.props.match.params;
-    const { posts } = this.props;
-
-    this.state = {
-      post: posts.find(x => Number(x.id) === Number(id))
-    };
-  }
-
-  render() {
-    const { post } = this.state;
-
+const Post = ({ history, post, loading }) => {
+  if (!loading) {
     if (post !== undefined) {
       return (
         <div className="Post card">
@@ -28,8 +20,8 @@ class Post extends Component {
               <span>{post.author}</span>
             </div>
             <div>
-              <span>Gepubliceerd op</span>
-              <span>{post.date}</span>
+              <span>Gepubliceerd</span>
+              <span>{moment(post.date.toDate()).calendar()}</span>
             </div>
             <div className="share">
               <div>Deel dit bericht</div>
@@ -52,10 +44,13 @@ class Post extends Component {
               </div>
             </div>
           </div>
-          <div className="content">{post.content}</div>
+          <div className="content">
+            <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          </div>
+
           <i
             className="material-icons goBack"
-            onClick={() => this.props.history.push("/")}
+            onClick={() => history.push("/")}
           >
             keyboard_arrow_left
           </i>
@@ -64,7 +59,26 @@ class Post extends Component {
     } else {
       return <Redirect to="/" />;
     }
+  } else {
+    return <div className="center">Laden...</div>;
   }
-}
+};
 
-export default Post;
+const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.match.params.id;
+  const posts = state.firestore.data.posts;
+
+  if (posts !== undefined) {
+    for (let post in posts) {
+      if (posts[post].id === id)
+        return { ...ownProps, post: posts[post], loading: false };
+    }
+  } else {
+    return { ...ownProps, loading: true };
+  }
+};
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: "posts" }])
+)(Post);
