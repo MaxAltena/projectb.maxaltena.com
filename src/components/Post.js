@@ -47,9 +47,8 @@ const Post = ({ history, post, loading }) => {
           <div className="content">
             <div dangerouslySetInnerHTML={{ __html: post.content }} />
           </div>
-
           <i
-            className="material-icons goBack"
+            className="material-icons goBack shake shake-slow-small"
             onClick={() => history.push("/")}
           >
             keyboard_arrow_left

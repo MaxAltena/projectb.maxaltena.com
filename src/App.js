@@ -4,8 +4,7 @@ import { animateScroll as scroll } from "react-scroll";
 import { connect } from "react-redux";
 import { getPosts } from "./store/actions/postActions";
 
-import Logo from "./components/Header/Logo";
-import Socials from "./components/Header/Socials";
+import Header from "./components/Header/Header";
 import Feed from "./components/Feed/Feed";
 import Post from "./components/Post";
 import CreatePost from "./components/CreatePost";
@@ -30,14 +29,9 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <header className="hide-on-med-and-down">
-            <Logo />
-            <Socials />
-          </header>
-          <header className="hide-on-large-only">
-            <Logo />
-            <Socials />
-          </header>
+          <Header cN="hide-on-med-and-down" />
+          <Header cN="hide-on-large-only" />
+
           <div className="container">
             <Switch>
               <Route exact path="/" component={Feed} />
@@ -50,8 +44,8 @@ class App extends Component {
           <i
             className={
               scrollHeight >= 25
-                ? "material-icons scrollToTop scrolled"
-                : "material-icons scrollToTop"
+                ? "material-icons scrollToTop shake shake-slow-small scrolled"
+                : "material-icons scrollToTop shake shake-slow-small"
             }
             onClick={() => scroll.scrollToTop()}
           >

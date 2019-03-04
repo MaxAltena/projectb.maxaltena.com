@@ -1,0 +1,126 @@
+@mixin shake($x, $y, $rot, $name, $steps: 10, $opacity: false) {
+  $r: 0deg;
+  $h: 0px;
+  $v: 0px;
+
+  $interval: $steps;
+  $step: 0%;
+
+  @keyframes #{$name} {
+    @while $step < 100% {
+      @if ($rot != 0deg) {
+        $r: random($rot) - $rot/2;
+      } @else {
+        $r: 0deg;
+      }
+      @if ($x != 0px) {
+        $h: random($x) - $x/2;
+      } @else {
+        $h: 0px;
+      }
+      @if ($y != 0px) {
+        $v: random($y) - $y/2;
+      } @else {
+        $v: 0px;
+      }
+
+      @if ($step == 0%) {
+        #{$step} {
+          transform: translate(0px, 0px) rotate(0deg);
+          @if ($opacity) {
+            opacity: random(10) * 0.1;
+          }
+        }
+      } @else {
+        #{$step} {
+          transform: translate($h, $v) rotate($r);
+          @if ($opacity) {
+            opacity: random(10) * 0.1;
+          }
+        }
+      }
+      $step: $step + $interval;
+    }
+  }
+}
+
+// reset
+$duration: 100ms;
+$base-name: shake-base;
+$iteration: infinite;
+$timing: ease-in-out;
+$delay: 0s;
+
+// The animation
+@mixin animation(
+  $name,
+  $dur: $duration,
+  $iter: $iteration,
+  $tim: $timing,
+  $del: $delay
+) {
+  animation-name: $name;
+  animation-duration: $dur;
+  animation-iteration-count: $iter;
+  animation-timing-function: $tim;
+  animation-delay: $del;
+}
+
+.shake {
+  display: inline-block;
+  transform-origin: center center;
+
+  &:hover {
+    @include animation($base-name);
+  }
+
+  &.freez {
+    @include animation($base-name);
+    &.shake-slow {
+      @include animation(shake-slow, 5s);
+    }
+    &.shake-slow-small {
+      @include animation(shake-slow-small, 5s);
+    }
+    &.shake-slow-button {
+      @include animation(shake-slow-button, 5s);
+    }
+    animation-play-state: paused;
+    &:hover {
+      animation-play-state: running;
+    }
+  }
+
+  &.shake-slow:hover {
+    @include animation(shake-slow, 5s);
+  }
+  &.shake-slow-small:hover {
+    @include animation(shake-slow-small, 5s);
+  }
+  &.shake-slow-button:hover {
+    @include animation(shake-slow-button, 5s);
+  }
+
+  &.shake-constant {
+    @include animation($base-name);
+    &.shake-slow {
+      @include animation(shake-slow, 5s);
+    }
+    &.shake-slow-small {
+      @include animation(shake-slow-small, 5s);
+    }
+    &.shake-slow-button {
+      @include animation(shake-slow-button, 5s);
+    }
+    &.hover-stop:hover {
+      animation-play-state: paused;
+    }
+  }
+  &.shake-delay {
+    @include animation($base-name, $duration, $iteration, $timing, 4s);
+  }
+}
+
+@include shake(15px, 15px, 8deg, "shake-slow", 2);
+@include shake(10px, 10px, 5deg, "shake-slow-small", 2);
+@include shake(5px, 5px, 2deg, "shake-slow-button", 2);

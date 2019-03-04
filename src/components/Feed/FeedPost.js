@@ -33,7 +33,10 @@ const FeedPost = ({ post }) => {
             <span>{displayDate}</span>
           </div>
         </div>
-        <Link to={`/bericht/${id}`} className="btn-flat waves-effect">
+        <Link
+          to={`/bericht/${id}`}
+          className="btn-flat waves-effect shake shake-slow-button"
+        >
           Lees bericht
         </Link>
       </div>
