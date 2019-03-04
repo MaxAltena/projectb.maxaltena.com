@@ -44,7 +44,7 @@ const Post = ({ history, post, loading }) => {
               </div>
             </div>
           </div>
-          <div className="content">
+          <div className="content-styled">
             <div dangerouslySetInnerHTML={{ __html: post.content }} />
           </div>
           <i

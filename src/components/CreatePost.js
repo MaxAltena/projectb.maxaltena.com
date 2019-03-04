@@ -169,7 +169,7 @@ class CreatePost extends Component {
               <div className="row">
                 <div className="col s12">
                   <p className="preview">Preview van de content</p>
-                  <div className="content">
+                  <div className="content-styled">
                     <div dangerouslySetInnerHTML={{ __html: content }} />
                   </div>
                 </div>

@@ -9,6 +9,7 @@ import Post from "./components/Post";
 import CreatePost from "./components/CreatePost";
 import LogIn from "./components/LogIn";
 import LogOut from "./components/LogOut";
+import ScrollToTop from "./components/common/ScrollToTop";
 
 class App extends Component {
   constructor(props) {
@@ -29,8 +30,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Header cN="hide-on-med-and-down" />
-          <Header cN="hide-on-large-only" />
+          <Header cN="hide-on-med-and-down" type="link" />
+          <Header cN="hide-on-large-only" type="link" />
           <div className="container">
             <Switch>
               <Route exact path="/" component={Feed} />
@@ -41,16 +42,7 @@ class App extends Component {
               <Route render={() => <Redirect to="/" />} />
             </Switch>
           </div>
-          <i
-            className={
-              scrollHeight >= 25
-                ? "material-icons scrollToTop shake shake-slow-small scrolled"
-                : "material-icons scrollToTop shake shake-slow-small"
-            }
-            onClick={() => scroll.scrollToTop()}
-          >
-            keyboard_arrow_up
-          </i>
+          <ScrollToTop scroll={scroll} scrollHeight={scrollHeight} />
         </div>
       </BrowserRouter>
     );

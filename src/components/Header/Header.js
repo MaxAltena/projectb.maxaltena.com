@@ -2,10 +2,10 @@ import React from "react";
 import Logo from "./Logo";
 import Socials from "./Socials";
 
-const Header = ({ cN }) => {
+const Header = ({ cN, type }) => {
   return (
     <header className={cN}>
-      <Logo />
+      <Logo type={type} />
       <Socials />
     </header>
   );
