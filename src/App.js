@@ -5,7 +5,7 @@ import { firestoreConnect } from "react-redux-firebase";
 
 import Header from "./components/Header/Header";
 import Feed from "./components/Feed/Feed";
-import Post from "./components/Post";
+import Post from "./components/Post/Post";
 import CreatePost from "./components/CreatePost";
 import LogIn from "./components/LogIn";
 import LogOut from "./components/LogOut";
