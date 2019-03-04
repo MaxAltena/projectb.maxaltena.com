@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { animateScroll as scroll } from "react-scroll";
-import { connect } from "react-redux";
-import { getPosts } from "./store/actions/postActions";
+import { firestoreConnect } from "react-redux-firebase";
 
 import Header from "./components/Header/Header";
 import Feed from "./components/Feed/Feed";
 import Post from "./components/Post";
 import CreatePost from "./components/CreatePost";
-// import Admin from "./components/Admin";
+import LogIn from "./components/LogIn";
+import LogOut from "./components/LogOut";
 
 class App extends Component {
   constructor(props) {
@@ -31,13 +31,13 @@ class App extends Component {
         <div className="App">
           <Header cN="hide-on-med-and-down" />
           <Header cN="hide-on-large-only" />
-
           <div className="container">
             <Switch>
               <Route exact path="/" component={Feed} />
               <Route path="/bericht/:id" component={Post} />
               <Route path="/create" component={CreatePost} />
-              {/* <Route path="/admin" component={Admin} /> */}
+              <Route path="/login" component={LogIn} />
+              <Route path="/logout" component={LogOut} />
               <Route render={() => <Redirect to="/" />} />
             </Switch>
           </div>
@@ -57,23 +57,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    ...ownProps,
-    posts: state.post.posts
-  };
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    ...ownProps,
-    getPosts: () => {
-      dispatch(getPosts());
-    }
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default firestoreConnect([
+  { collection: "posts", orderBy: ["date", "desc"] },
+  { collection: "authors" }
+])(App);

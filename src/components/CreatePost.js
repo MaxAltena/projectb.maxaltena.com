@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { createPost } from "../store/actions/postActions";
 import isEmpty from "../validation/is-empty";
 import removeSpecial from "../validation/remove-special";
+import { compose } from "redux";
+import { firestoreConnect } from "react-redux-firebase";
 
 class CreatePost extends Component {
   constructor(props) {
@@ -46,14 +49,48 @@ class CreatePost extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    this.props.createPost(this.state);
+    const { createPost, history } = this.props;
 
-    this.props.history.push("/");
+    createPost(this.state);
+    history.push("/");
+  };
+
+  componentDidMount = () => {
+    this.makeSelectWork();
+  };
+
+  componentDidUpdate = () => {
+    this.makeSelectWork();
+  };
+
+  makeSelectWork = () => {
+    const script = document.createElement("script");
+    script.innerHTML =
+      "var elems = document.querySelectorAll('select'); var instances = M.FormSelect.init(elems, {});";
+    document.body.appendChild(script);
   };
 
   render() {
     const { id, title, author, image, preview, content } = this.state;
-    const { authors } = this.props;
+    const { auth, authors } = this.props;
+
+    if (auth.isEmpty) return <Redirect to="/" />;
+
+    let authorElements = [];
+    if (authors !== undefined) {
+      for (let author in authors) {
+        authorElements.push(
+          <option
+            value={authors[author].name}
+            data-icon={authors[author].image}
+            className="left"
+            key={authors[author].id}
+          >
+            {authors[author].name}
+          </option>
+        );
+      }
+    }
 
     return (
       <div className="CreatePost card">
@@ -92,18 +129,7 @@ class CreatePost extends Component {
                     <option value="" disabled defaultValue>
                       Selecteer auteur
                     </option>
-                    {authors.map(author => {
-                      return (
-                        <option
-                          value={author.id}
-                          data-icon={author.image}
-                          className="left"
-                          key={author.id}
-                        >
-                          {author.name}
-                        </option>
-                      );
-                    })}
+                    {authorElements}
                   </select>
                   <label>Auteur</label>
                 </div>
@@ -120,7 +146,6 @@ class CreatePost extends Component {
                   <textarea
                     id="preview"
                     className="materialize-textarea"
-                    placeholder="Preview tekst van de content"
                     onChange={this.handleChange}
                     value={preview}
                     required
@@ -133,7 +158,6 @@ class CreatePost extends Component {
                   <textarea
                     id="content"
                     className="materialize-textarea"
-                    placeholder="Content van dit bericht"
                     onChange={this.handleChange}
                     value={content}
                     required
@@ -171,10 +195,18 @@ class CreatePost extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return {
-    ...ownProps,
-    authors: state.author.authors
-  };
+  if (state.firestore.data.authors === undefined) {
+    return {
+      ...ownProps,
+      auth: state.firebase.auth
+    };
+  } else {
+    return {
+      ...ownProps,
+      authors: state.firestore.data.authors,
+      auth: state.firebase.auth
+    };
+  }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -186,7 +218,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  firestoreConnect([{ collection: "authors" }])
 )(CreatePost);
