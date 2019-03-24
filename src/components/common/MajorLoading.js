@@ -17,7 +17,7 @@ const MajorLoading = () => {
         }}
         className="center"
       >
-        <div style={{ width: "100%", maxWidth: "500px" }}>
+        <div style={{ width: "100%", maxWidth: "500px", margin: "0 20px" }}>
           <h5 style={{ margin: "0 0 50px 0" }}>Laden...</h5>
           <div className="progress">
             <div className="indeterminate" />
