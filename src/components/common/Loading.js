@@ -1,28 +1,33 @@
 import React from "react";
+import Header from "../Header/Header";
 
 const Loading = () => {
   return (
-    <div
-      style={{
-        height: "250px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center"
-      }}
-      className="center"
-    >
+    <div className="Loading">
+      <Header cN="hide-on-med-and-down" type="a" />
+      <Header cN="hide-on-large-only" type="a" />
       <div
         style={{
-          width: "calc(100% - 20px)",
-          maxWidth: "250px",
-          padding: "0 10px"
+          height: "500px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center"
         }}
+        className="center"
       >
-        <h6 style={{ margin: "0 0 25px 0" }}>Laden...</h6>
-        <div className="progress">
-          <div className="indeterminate" />
+        <div
+          style={{
+            width: "calc(100% - 20px)",
+            maxWidth: "500px",
+            padding: "0 10px"
+          }}
+        >
+          <h5 style={{ margin: "0 0 50px 0" }}>Laden...</h5>
+          <div className="progress shake shake-always">
+            <div className="indeterminate black" />
+          </div>
         </div>
       </div>
     </div>

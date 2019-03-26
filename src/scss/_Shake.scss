@@ -100,6 +100,9 @@ $delay: 0s;
   &.shake-slow-button:hover {
     @include animation(shake-slow-button, 5s);
   }
+  &.shake-always {
+    @include animation(shake-always, 5s);
+  }
 
   &.shake-constant {
     @include animation($base-name);
@@ -124,3 +127,4 @@ $delay: 0s;
 @include shake(15px, 15px, 8deg, "shake-slow", 2);
 @include shake(10px, 10px, 5deg, "shake-slow-small", 2);
 @include shake(5px, 5px, 2deg, "shake-slow-button", 2);
+@include shake(10px, 10px, 5deg, "shake-always", 2);

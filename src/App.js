@@ -4,7 +4,8 @@ import { animateScroll as scroll } from "react-scroll";
 import { firestoreConnect } from "react-redux-firebase";
 
 import Header from "./components/Header/Header";
-import Redirecting from "./components/common/Redirecting";
+import RedirectTrello from "./components/common/RedirectTrello";
+import RedirectDrive from "./components/common/RedirectDrive";
 import Feed from "./components/Feed/Feed";
 import Post from "./components/Post/Post";
 import CreatePost from "./components/CreatePost";
@@ -36,7 +37,8 @@ class App extends Component {
           <div className="container">
             <Switch>
               <Route exact path="/" component={Feed} />
-              <Route path="/trello" component={Redirecting} />
+              <Route exact path="/trello" component={RedirectTrello} />
+              <Route exact path="/drive" component={RedirectDrive} />
               <Route path="/bericht/:id" component={Post} />
               <Route path="/create" component={CreatePost} />
               <Route path="/login" component={LogIn} />

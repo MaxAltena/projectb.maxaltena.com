@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 
-class Redirecting extends Component {
-  // componentDidMount = () => {
-  //   this.props.history.push(
-  //     "https://trello.com/b/cMiFjg4o/the-parkinson-project"
-  //   );
-  // };
-
+class RedirectingTrello extends Component {
   render() {
     setTimeout(
       () =>
@@ -28,4 +22,4 @@ class Redirecting extends Component {
   }
 }
 
-export default Redirecting;
+export default RedirectingTrello;
