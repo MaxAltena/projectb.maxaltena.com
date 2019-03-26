@@ -36,11 +36,11 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Feed} />
               <Route
-                exact
                 path="/trello"
-                render={() => (
-                  <Redirect to="https://trello.com/b/cMiFjg4o/the-parkinson-project" />
-                )}
+                render={() =>
+                  (window.location =
+                    "https://trello.com/b/cMiFjg4o/the-parkinson-project")
+                }
               />
               <Route path="/bericht/:id" component={Post} />
               <Route path="/create" component={CreatePost} />
