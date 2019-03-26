@@ -35,6 +35,13 @@ class App extends Component {
           <div className="container">
             <Switch>
               <Route exact path="/" component={Feed} />
+              <Route
+                exact
+                path="/trello"
+                render={() => (
+                  <Redirect to="https://trello.com/b/cMiFjg4o/the-parkinson-project" />
+                )}
+              />
               <Route path="/bericht/:id" component={Post} />
               <Route path="/create" component={CreatePost} />
               <Route path="/login" component={LogIn} />
