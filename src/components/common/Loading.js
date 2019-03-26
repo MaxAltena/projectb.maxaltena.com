@@ -13,7 +13,13 @@ const Loading = () => {
       }}
       className="center"
     >
-      <div style={{ width: "100%", maxWidth: "250px", margin: "0 20px" }}>
+      <div
+        style={{
+          width: "calc(100% - 20px)",
+          maxWidth: "250px",
+          padding: "0 10px"
+        }}
+      >
         <h6 style={{ margin: "0 0 25px 0" }}>Laden...</h6>
         <div className="progress">
           <div className="indeterminate" />
