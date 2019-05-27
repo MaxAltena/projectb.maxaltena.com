@@ -4,8 +4,12 @@ import Social from "./Social";
 const Socials = () => {
   return (
     <div className="Socials">
-      <Social linkTo="mailto:max@maxaltena.com" icon="mail" />
-      <Social linkTo="tel:+31639105742" icon="phone" />
+      <Social linkTo="mailto:info@desigaar.com" icon="mail" />
+      <Social
+        linkTo="https://github.com/de-sigaar/TheParkinsonProject"
+        icon="github"
+        iconType="fontawesome-brand"
+      />
       <Social
         linkTo="https://trello.com/b/cMiFjg4o/the-parkinson-project"
         icon="trello"
